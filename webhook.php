@@ -48,7 +48,7 @@ $isValid = verify($data, $publicKeyContent, $signature);
 
 if (!$isValid) {
     http_response_code(401);
-    echo json_encode(['responseCode' => '5005601', 'message' => 'Invalid signature']);
+    echo json_encode(['responseCode' => '5005601', 'responseMessage' => 'Invalid signature']);
     exit;
 }
 // Decode JSON
