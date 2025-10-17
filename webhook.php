@@ -21,8 +21,8 @@ function read_header(string $name, $default = null) {
 $rawBody = file_get_contents('php://input');
 
 $path = '/webhook.php';
-$timestamp = read_header['X-TIMESTAMP'];
-$signature = read_header['X-SIGNATURE'];
+$timestamp = read_header('X-TIMESTAMP');
+$signature = read_header('X-SIGNATURE');
 $payload = hash('sha256', $rawBody);
 $data = 'POST:'.$path.':'.$payload.':'.$timestamp;
 
