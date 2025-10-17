@@ -1,13 +1,28 @@
 <?php
 // Set content type
 header('Content-Type: application/json');
-$headers = getallheaders();
+function read_header(string $name, $default = null) {
+    // Try getallheaders (Apache/FPM)
+    $h = function_exists('getallheaders') ? getallheaders() : [];
+    // Normalize to lowercase keys
+    $norm = [];
+    foreach ($h as $k => $v) {
+        $norm[strtolower($k)] = $v;
+    }
+    $key = strtolower($name);
+    if (isset($norm[$key])) {
+        return $norm[$key];
+    }
+    // Fallback to $_SERVER (Nginx/FastCGI, some hosts)
+    $serverKey = 'HTTP_' . strtoupper(str_replace('-', '_', $name));
+    return $_SERVER[$serverKey] ?? $default;
+}
 // Read raw POST body
 $rawBody = file_get_contents('php://input');
 
 $path = '/webhook.php';
-$timestamp = $headers['X-TIMESTAMP'];
-$signature = $headers['X-SIGNATURE'];
+$timestamp = read_header['X-TIMESTAMP'];
+$signature = read_header['X-SIGNATURE'];
 $payload = hash('sha256', $rawBody);
 $data = 'POST:'.$path.':'.$payload.':'.$timestamp;
 
