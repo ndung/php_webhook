@@ -47,7 +47,7 @@ EOD;
 $isValid = verify($data, $publicKeyContent, $signature);
 
 if (!$isValid) {
-    http_response_code(401);
+    http_response_code(500);
     echo json_encode(['responseCode' => '5005601', 'responseMessage' => 'Invalid signature']);
     exit;
 }
