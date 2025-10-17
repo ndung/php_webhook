@@ -8,9 +8,6 @@ $rawBody = file_get_contents('php://input');
 // Decode JSON
 $data = json_decode($rawBody, true);
 
-// Optional: Log incoming payload for debugging
-file_put_contents('webhook_log.txt', date('Y-m-d H:i:s') . " - Payload: " . $rawBody . PHP_EOL, FILE_APPEND);
-
 // Example: Verify HMAC signature (if your webhook provider sends one)
 $headers = getallheaders();
 $secret = 'YOUR_WEBHOOK_SECRET'; // change this to your actual secret
