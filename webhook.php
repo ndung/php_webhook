@@ -9,7 +9,7 @@ $path = '/webhook.php';
 $timestamp = $headers['X-TIMESTAMP'];
 $signature = $headers['X-SIGNATURE'];
 $payload = hash('sha256', $rawBody);
-$data = 'POST:'.$path.':'.$hash.':'.$timestamp;
+$data = 'POST:'.$path.':'.$payload.':'.$timestamp;
 
 function verify($data, $publicKey, $signature) {
 	$binarySignature = base64_decode($signature);
