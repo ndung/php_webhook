@@ -185,9 +185,9 @@
             <div class="contact-card">
                 <div>
                     <h3>Visit us</h3>
-                    <p>PT Niotech Digital Studio<br>Jalan Teknologi No. 88<br>Jakarta Selatan, Indonesia</p>
+                    <!--p>PT Niotech Digital Studio<!--br>Jalan Teknologi No. 88<br>Jakarta Selatan, Indonesia</p-->
                     <h3 style="margin-top: 2rem;">Connect</h3>
-                    <p>Email: hello@niotechstudio.com<br>Phone: +62 21 555 9021</p>
+                    <p>Email: lindung.manik@gmail.com<br>Phone: +62 813 2224 5545</p>
                 </div>
                 <form action="#" method="post">
                     <input type="text" name="name" placeholder="Full name" required>
@@ -221,14 +221,14 @@
                     <a href="#">Case Studies</a>
                     <a href="#">Careers</a>
                 </div>
-                <div>
+                <!--div>
                     <strong>Follow</strong>
                     <div class="social-links">
                         <a href="https://www.linkedin.com" aria-label="LinkedIn">in</a>
                         <a href="https://www.behance.net" aria-label="Behance">Be</a>
                         <a href="https://dribbble.com" aria-label="Dribbble">Dr</a>
                     </div>
-                </div>
+            </div-->
             </div>
             <div class="footer-bottom">© <?php echo date('Y'); ?> PT Niotech Digital Studio. All rights reserved.</div>
         </div>
