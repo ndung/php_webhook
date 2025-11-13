@@ -1,6 +1,6 @@
 <?php
 $botToken = '5771507431:AAHK4Vv8z7y6sTwbhk00xFcqfxOhQfAmMPI';
-$chatId = '@ndoenks';
+$chatId = '276165542';
 $submissionStatus = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
