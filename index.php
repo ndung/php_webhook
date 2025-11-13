@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PT Niotech Digital Studio</title>
+    <title>Niotech Digital Studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -70,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav>
         <div class="container nav-content">
             <div class="logo">
-                <span>ND</span>
-                PT Niotech Digital Studio
+                <span>NDS</span>
+                Niotech Digital Studio
             </div>
             <div class="nav-links">
                 <a href="#services">Services</a>
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="hero-text">
             <div class="badge">Experience-driven digital partner</div>
             <h1>Crafting human-centered digital products for ambitious brands.</h1>
-            <p>PT Niotech Digital Studio blends strategy, design, and engineering to deliver products that feel effortless to use. We help teams launch validated MVPs, scale platforms, and build digital experiences that people love.</p>
+            <p>Niotech Digital Studio blends strategy, design, and engineering to deliver products that feel effortless to use. We help teams launch validated MVPs, scale platforms, and build digital experiences that people love.</p>
             <div class="hero-metrics">
                 <div class="metric-card">
                     <h3>60+</h3>
@@ -242,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="contact-card">
                 <div>
                     <h3>Visit us</h3>
-                    <!--p>PT Niotech Digital Studio<!--br>Jalan Teknologi No. 88<br>Jakarta Selatan, Indonesia</p-->
+                    <!--p>Niotech Digital Studio<!--br>Jalan Teknologi No. 88<br>Jakarta Selatan, Indonesia</p-->
                     <h3 style="margin-top: 2rem;">Connect</h3>
                     <p>Email: lindung.manik@gmail.com<br>Phone: +62 813 2224 5545</p>
                 </div>
@@ -266,8 +266,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo">
-                        <span>ND</span>
-                        PT Niotech Digital Studio
+                        <span>NDS</span>
+                        Niotech Digital Studio
                     </div>
                     <p>We combine research, design, and engineering to accelerate your digital transformation.</p>
                 </div>
@@ -292,7 +292,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
             </div-->
             </div>
-            <div class="footer-bottom">© <?php echo date('Y'); ?> PT Niotech Digital Studio. All rights reserved.</div>
+            <div class="footer-bottom">© <?php echo date('Y'); ?> Niotech Digital Studio. All rights reserved.</div>
         </div>
     </footer>
 </body>
