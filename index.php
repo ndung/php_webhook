@@ -241,8 +241,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="contact-card">
                 <div>
-                    <h3>Visit us</h3>
-                    <!--p>Niotech Digital Studio<!--br>Jalan Teknologi No. 88<br>Jakarta Selatan, Indonesia</p-->
+                    <!--h3>Visit us</h3>
+                    <p>Niotech Digital Studio<!--br>Jalan Teknologi No. 88<br>Jakarta Selatan, Indonesia</p-->
                     <h3 style="margin-top: 2rem;">Connect</h3>
                     <p>Email: lindung.manik@gmail.com<br>Phone: +62 813 2224 5545</p>
                 </div>
