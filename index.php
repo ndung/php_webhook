@@ -1,6 +1,6 @@
 <?php
-$botToken = '5771507431:AAHK4Vv8z7y6sTwbhk00xFcqfxOhQfAmMPI';
-$chatId = '276165542';
+$botToken = getenv('BOT_TOKEN') ?: '';
+$chatId = getenv('CHAT_ID') ?: '';
 $submissionStatus = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,37 +16,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'Submitted at: ' . date('c'),
     ];
 
-    $endpoint = "https://api.telegram.org/bot{$botToken}/sendMessage";
-    $payload = http_build_query([
-        'chat_id' => $chatId,
-        'text' => implode("\n", $messageLines),
-    ]);
+    if ($botToken === '' || $chatId === '') {
+        error_log('Missing BOT_TOKEN or CHAT_ID environment variables.');
+        $submissionStatus = 'error';
+    } else {
+        $endpoint = "https://api.telegram.org/bot{$botToken}/sendMessage";
+        $payload = http_build_query([
+            'chat_id' => $chatId,
+            'text' => implode("\n", $messageLines),
+        ]);
 
-    $ch = curl_init($endpoint);
-    if ($ch !== false) {
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        $ch = curl_init($endpoint);
+        if ($ch !== false) {
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 
-        $response = curl_exec($ch);
-        if ($response === false) {
-            error_log('Failed to send Telegram message: ' . curl_error($ch));
-            $submissionStatus = 'error';
-        } else {
-            $decodedResponse = json_decode($response, true);
-            if (!isset($decodedResponse['ok']) || $decodedResponse['ok'] !== true) {
-                error_log('Telegram API error: ' . $response);
+            $response = curl_exec($ch);
+            if ($response === false) {
+                error_log('Failed to send Telegram message: ' . curl_error($ch));
                 $submissionStatus = 'error';
             } else {
-                $submissionStatus = 'success';
+                $decodedResponse = json_decode($response, true);
+                if (!isset($decodedResponse['ok']) || $decodedResponse['ok'] !== true) {
+                    error_log('Telegram API error: ' . $response);
+                    $submissionStatus = 'error';
+                } else {
+                    $submissionStatus = 'success';
+                }
             }
-        }
 
-        curl_close($ch);
-    } else {
-        error_log('Failed to initialize cURL for Telegram request.');
-        $submissionStatus = 'error';
+            curl_close($ch);
+        } else {
+            error_log('Failed to initialize cURL for Telegram request.');
+            $submissionStatus = 'error';
+        }
     }
 }
 ?>
