@@ -1,3 +1,55 @@
+<?php
+$botToken = '5771507431:AAHK4Vv8z7y6sTwbhk00xFcqfxOhQfAmMPI';
+$chatId = '@ndoenks';
+$submissionStatus = null;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim((string) filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    $email = trim((string) filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
+    $project = trim((string) filter_input(INPUT_POST, 'project', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+
+    $messageLines = [
+        'New contact request received:',
+        'Name: ' . ($name !== '' ? $name : 'N/A'),
+        'Email: ' . ($email !== '' ? $email : 'N/A'),
+        'Project details: ' . ($project !== '' ? $project : 'N/A'),
+        'Submitted at: ' . date('c'),
+    ];
+
+    $endpoint = "https://api.telegram.org/bot{$botToken}/sendMessage";
+    $payload = http_build_query([
+        'chat_id' => $chatId,
+        'text' => implode("\n", $messageLines),
+    ]);
+
+    $ch = curl_init($endpoint);
+    if ($ch !== false) {
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+
+        $response = curl_exec($ch);
+        if ($response === false) {
+            error_log('Failed to send Telegram message: ' . curl_error($ch));
+            $submissionStatus = 'error';
+        } else {
+            $decodedResponse = json_decode($response, true);
+            if (!isset($decodedResponse['ok']) || $decodedResponse['ok'] !== true) {
+                error_log('Telegram API error: ' . $response);
+                $submissionStatus = 'error';
+            } else {
+                $submissionStatus = 'success';
+            }
+        }
+
+        curl_close($ch);
+    } else {
+        error_log('Failed to initialize cURL for Telegram request.');
+        $submissionStatus = 'error';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -189,12 +241,17 @@
                     <h3 style="margin-top: 2rem;">Connect</h3>
                     <p>Email: lindung.manik@gmail.com<br>Phone: +62 813 2224 5545</p>
                 </div>
-                <form action="#" method="post">
+                <form action="#contact" method="post">
                     <input type="text" name="name" placeholder="Full name" required>
                     <input type="email" name="email" placeholder="Email address" required>
                     <textarea name="project" placeholder="Tell us about your project" required></textarea>
                     <button class="cta-button" type="submit">Request consultation</button>
                 </form>
+                <?php if ($submissionStatus === 'success'): ?>
+                    <p class="form-feedback" role="status">Thank you! Your message has been sent.</p>
+                <?php elseif ($submissionStatus === 'error'): ?>
+                    <p class="form-feedback" role="alert">We could not send your message at this time. Please try again later.</p>
+                <?php endif; ?>
             </div>
         </div>
     </section>
