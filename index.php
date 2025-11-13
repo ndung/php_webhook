@@ -135,7 +135,7 @@
         </div>
     </section>
 
-    <section class="section" id="testimonials">
+    <!--section class="section" id="testimonials">
         <div class="container">
             <div class="section-header">
                 <h2>What partners say</h2>
@@ -174,7 +174,7 @@
                 </div>
             </div>
         </div>
-    </section>
+</section-->
 
     <section class="section" id="contact">
         <div class="container">
