@@ -20,7 +20,7 @@
                 <a href="#services">Services</a>
                 <a href="#portfolio">Portfolio</a>
                 <a href="#process">Process</a>
-                <a href="#testimonials">Testimonials</a>
+                <!--a href="#testimonials">Testimonials</a-->
                 <a href="#contact">Contact</a>
             </div>
             <a class="cta-button" href="#contact">Start a project</a>
